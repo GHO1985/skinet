@@ -30,6 +30,7 @@ namespace API
             
             services.AddApplicationServices();
             services.AddSwaggerDocumentation();
+            services.AddSwaggerGen();
             services.AddCors(opt =>
             {
                 opt.AddPolicy("CorsPolicy", policy =>
@@ -57,6 +58,8 @@ namespace API
             app.UseAuthorization();
 
             app.UseSwaggerDocumentation();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {c.SwaggerEndpoint("/swagger/v1/swagger.json", "SkiNet API V1");});
 
             app.UseEndpoints(endpoints =>
             {
